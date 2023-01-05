@@ -12,9 +12,16 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    // "jsx": "preserve",
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "pages/[userId]",
+    "pages/api/auth/restricted.ts"
+, "pages/api/auth/[...nextauth].js"  ],
   "exclude": ["node_modules"]
 }

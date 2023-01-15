@@ -2,24 +2,39 @@
 
 A full stack web application using NEXTJS and MYSQL. A messaging app that allows for user sign up. Each user is giving a page to add and save messages. Built with JavaScript, React, React hooks, SWR, and CSS.
 
+
+# Features
+CRUD - Create, Read, Update and Delete Messages
+Profile - Users can sign in and out to their own "page"
+# Core Dependencies
+React - Javascript Library
+NextJS - FullStack Framework
+Next Auth -
+Prisma - 
+MySQL - 
+SWR - 
+
 ## Project Status
 
-Nov 10 - Connected the NextJS app with MySQL database. Formik library linked to database
+#### JANUARY
 
-Nov 14 - Dynamic routes for each user
+Jan 4 - prisma and next auth are connected, User data is being sent to the db
 
-Nov 21 - Created a edit and delete feature for both the UI and in the database
-
-Nov 23 - Filter through messages using a search input field
-
-DECEMBER
-
-- Installed Next Auth, Prisma
-
-Dec 15 - Restarted the project to include typescript and tailwind. 
-         UseContext for the site's dark mode
+#### DECEMBER
 
 Dec 24 - REworked the site's UI with Tailwind
+- Installed Next Auth, Prisma
+---------------------------------------------------------
+
+Dec 15 - Restarted the project to include typescript and tailwind.
+UseContext for the site's dark mode
+#### NOVEMBER
+
+Nov 23 - Filter through messages using a search input field
+Nov 21 - Created a edit and delete feature for both the UI and in the database
+Nov 14 - Dynamic routes for each user
+Nov 10 - Connected the NextJS app with MySQL database. Formik library linked to database
+
 ## Project Screen Shot(s)
 
 <img src="./public/screenshots/ui1.png">

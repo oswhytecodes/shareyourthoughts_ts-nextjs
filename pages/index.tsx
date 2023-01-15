@@ -1,4 +1,3 @@
-import { PrismaClient } from "@prisma/client";
 import Head from "next/head";
 import { useContext } from "react";
 import { ThemeContext } from "../context/AppContext";
@@ -6,9 +5,9 @@ import { PrimaryButton } from "../components/button/Button";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 
-export default function Home(props) {
+export default function Home(props: any) {
   const { data: session, status } = useSession();
-  const { theme } = useContext(ThemeContext);
+  const  theme  = useContext(ThemeContext);
   return (
     <div
       className={`

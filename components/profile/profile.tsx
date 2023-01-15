@@ -1,12 +1,11 @@
-import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
+import { ProfileProps } from "../../types/types";
 
-export default function Profile() {
-  const router = useRouter();
+export default function Profile({ handleProfileToggle }: ProfileProps) {
   return (
     <section
-      className=" bg-clrBlack mt-10 h-60 absolute w-full m-auto max-w-[450px] inline-block
+      className=" bg-clrBlack mt-10 h-60 absolute w-full m-auto max-w-[450px]
     "
     >
       <div className="">
@@ -15,7 +14,9 @@ export default function Profile() {
             <h1 className="bold text-xl uppercase">Profile Page</h1>
             <FontAwesomeIcon
               className="text-clrWhite p-2 text-[18px] cursor-pointer hover:text-clrWhite"
-              onClick={() => router.back()}
+              onClick={() => {
+                handleProfileToggle();
+              }}
               icon={faX}
             />
           </div>

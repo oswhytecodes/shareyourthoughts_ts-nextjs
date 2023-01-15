@@ -8,7 +8,7 @@ type ButtonValueProps = {
 
 export const PrimaryButton = (props: ButtonValueProps) => {
   const { ButtonValue } = props;
-  const { theme } = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
   return (
     <button
       className={`
@@ -26,7 +26,7 @@ export const PrimaryButton = (props: ButtonValueProps) => {
 };
 
 export const SecondaryButton = (props: ButtonValueProps) => {
-  const { theme } = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
 
   const { ButtonValue } = props;
   return (

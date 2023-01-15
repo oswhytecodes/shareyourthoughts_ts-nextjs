@@ -1,21 +1,30 @@
-import { useState, useContext } from "react";
+import { useContext, useState } from "react";
 import { SecondaryButton } from "../button/Button";
 import { ThemeContext } from "../../context/AppContext";
-import { Session } from "inspector";
+import { useSession } from "next-auth/react";
+import { CreateMessageProps } from "../../types/types";
 
-type UserDataType = {
-  name?: string | null | undefined;
-  email?: string | null | undefined;
-  image?: string | null | undefined;
-};
-const Input = () => {
+const Input = ({ createMessage }: CreateMessageProps) => {
   const { theme } = useContext(ThemeContext);
-  const [value, setValue] = useState("");
+  const { data: session, status } = useSession();
 
-  const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
+  // nextjs will not accept:  // const id = session?.user.userId;
+  const id = session?.userId;
+
+  const [message, setMessage] = useState<string>("");
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setValue(e.target.value);
+    if (message.length < 3) {
+      setError("Message is too short");
+    } else {
+      setMessage("");
+      setError("");
+      createMessage(id, message);
+    }
   };
+
+  // error on input
+  const [error, setError] = useState<string>("");
   return (
     <section
       className={`
@@ -24,7 +33,7 @@ const Input = () => {
           ? "bg-clrWhite text-clrBlack"
           : "bg-clrGrey text-clrWhite"
       } 
-      bg-clrGrey p-4 col-span-2 drop-shadow-md
+      bg-clrGrey p-4 col-span-2 drop-shadow-md md:h-full h-[18em]
     `}
     >
       {/* form */}
@@ -36,9 +45,12 @@ const Input = () => {
         <textarea
           className="p-2 h-40 border border-1 border-clrBlack bg-transparent shadow-xl rounded-md"
           placeholder="Add Message..."
-          onChange={(e) => setValue(e.target.value)}
-          value={value}
+          onChange={(e) => setMessage(e.target.value)}
+          value={message || ""}
         />
+        <div>
+          <p className="text-red-600">{error}</p>
+        </div>
         <div className="m-4 inline-block">
           <SecondaryButton
             onClick={() => {

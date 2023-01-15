@@ -14,14 +14,16 @@
     "isolatedModules": true,
     // "jsx": "preserve",
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    // "typeRoots": ["./types"]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "pages/[userId]",
-    "pages/api/auth/restricted.ts"
-, "pages/api/auth/[...nextauth].js"  ],
+    "pages/[userID]",
+    "pages/api/auth/restricted.ts",
+    "pages/api/auth/[...nextauth].js"
+  ],
   "exclude": ["node_modules"]
 }

@@ -24,5 +24,12 @@ export const authOptions = {
       },
     }),
   ],
+  callbacks: {
+    session: async ({session, user}) => {
+      session.userId = user.id;
+      return Promise.resolve(session);
+    },
+  },
+  adapter: PrismaAdapter(prisma),
 };
 export default NextAuth(authOptions);

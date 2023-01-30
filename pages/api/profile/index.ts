@@ -1,19 +1,22 @@
 import { PrismaClient } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
-const prisma = new PrismaClient();
 
+const prisma = new PrismaClient();
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const session = await getSession({ req });
-  if (session) {
-    const results = await prisma.user.findUnique({
+
+  try {
+    const results = await prisma.profile.findFirst({
       where: {
-        id: session.userId,
+        userId: session?.userId,
       },
     });
     res.json(results);
+  } catch (error) {
+    res.status(500).json(error);
   }
 }

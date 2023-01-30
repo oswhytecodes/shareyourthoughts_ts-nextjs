@@ -8,7 +8,7 @@ type ButtonValueProps = {
 
 export const PrimaryButton = (props: ButtonValueProps) => {
   const { ButtonValue } = props;
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   return (
     <button
       className={`
@@ -26,9 +26,27 @@ export const PrimaryButton = (props: ButtonValueProps) => {
 };
 
 export const SecondaryButton = (props: ButtonValueProps) => {
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
   const { ButtonValue } = props;
+  return (
+    <button
+      className={`
+        py-2 px-4 border text-clrWhite hover:bg-transparent font-bold
+     ${
+       theme === "light"
+         ? "bg-clrHeader hover:border-clrHeader hover:text-clrHeader"
+         : "bg-clrBlack hover:border-clrBlack  hover:text-clrBlack"
+     }
+    `}
+    >
+      {ButtonValue}
+    </button>
+  );
+};
+
+export const ExtraBtn = ({ButtonValue}) => {
+  const { theme } = useContext(ThemeContext);
   return (
     <button
       className={`

@@ -1,21 +1,21 @@
 import { createContext, useState, useEffect } from "react";
 
-type Theme = "light" | "dark" | "";
-type Username = string;
-export type UserNameType = string;
-
 type ContextProvider = {
   children: React.ReactNode;
 };
+type Theme = "light" | "dark" | "";
 
-export const ThemeContext = createContext({});
-export const UserNameContext = createContext("" as UserNameType);
+type ThemeContextType = {
+  theme: Theme;
+  setTheme: React.Dispatch<React.SetStateAction<Theme>>;
+};
+export const ThemeContext = createContext<ThemeContextType>({});
 
 export const ThemeContextProvider = ({ children }: ContextProvider) => {
   const [theme, setTheme] = useState<Theme>("");
 
   useEffect(() => {
-    let item = JSON.parse(localStorage.getItem("theme"));
+    let item = JSON.parse(localStorage.getItem("theme")!);
     if (item) {
       setTheme(item);
     }
@@ -31,6 +31,10 @@ export const ThemeContextProvider = ({ children }: ContextProvider) => {
     </ThemeContext.Provider>
   );
 };
+
+// type Username = string;
+// export type UserNameType = string;
+// export const UserNameContext = createContext("" as UserNameType);
 
 // export const UserNameContextProvider = ({ children }: ContextProvider) => {
 //   const [username, setUsername] = useState<string>("");

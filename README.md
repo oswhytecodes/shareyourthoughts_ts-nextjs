@@ -9,9 +9,9 @@ Profile - Users can sign in and out to their own "page"
 # Core Dependencies
 React - Javascript Library
 NextJS - FullStack Framework
-Next Auth -
-Prisma - 
-MySQL - 
+Next Auth - User Authentication 
+Prisma - Node.JS and Typescript ORM
+MySQL - Database
 SWR - 
 
 ## Project Status
@@ -19,7 +19,7 @@ SWR -
 #### JANUARY
 
 Jan 4 - prisma and next auth are connected, User data is being sent to the db
-
+Jan 30 - Using session object and router to redirect users that haven't signed up
 #### DECEMBER
 
 Dec 24 - REworked the site's UI with Tailwind
@@ -57,19 +57,22 @@ To Start Server:
 
 To Visit App:
 
-`localhost:3000/user`
+`localhost:3000`
 
 ## Reflection
 
 - What was the context for this project?
   - To learn and practice developing a fullstack application in NextJs.
-- What did you set out to build?
 
+- What did you set out to build?
   - A full stack CRUD application,
 
 - Why was this project challenging and therefore a really good learning experience?
-  - As a developer, it's is important to understand how an entire web application flows.
+  - As a developer, it's important to understand how an entire web application flows.
+
 - What were some unexpected obstacles?
+  - Immediately redirecting users to the profile page if they do not have a username
   - The favorites feature and persisting the data in localstorage
+
 - What tools did you use to implement this project?
-  - NEXTJS, React, SWR, Formik, MySQL, Sql, Git, Github, VS Code
+  - NEXTJS, React, SWR, Next Auth, Prisma, MySQL, Sql, Git, Github, VS Code

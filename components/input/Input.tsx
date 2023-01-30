@@ -3,6 +3,7 @@ import { SecondaryButton } from "../button/Button";
 import { ThemeContext } from "../../context/AppContext";
 import { useSession } from "next-auth/react";
 import { CreateMessageProps } from "../../types/types";
+import clsx from "clsx";
 
 const Input = ({ createMessage }: CreateMessageProps) => {
   const { theme } = useContext(ThemeContext);
@@ -11,34 +12,36 @@ const Input = ({ createMessage }: CreateMessageProps) => {
   // nextjs will not accept:  // const id = session?.user.userId;
   const id = session?.userId;
 
+  // error on input
+  const [error, setError] = useState<string>("");
   const [message, setMessage] = useState<string>("");
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (message.length < 3) {
+
+    if (message.length < 3 && session) {
       setError("Message is too short");
+    } else if (!session) {
+      setError("You are not signed in.");
+      setMessage("")
     } else {
       setMessage("");
       setError("");
       createMessage(id, message);
     }
   };
-
-  // error on input
-  const [error, setError] = useState<string>("");
   return (
     <section
-      className={`
-      ${
+      className={clsx(
         theme === "light"
           ? "bg-clrWhite text-clrBlack"
-          : "bg-clrGrey text-clrWhite"
-      } 
-      bg-clrGrey p-4 col-span-2 drop-shadow-md md:h-full h-[18em]
-    `}
+          : "bg-clrGrey text-clrWhite",
+        "bg-clrGrey col-span-2 md:row-span-6 row-span-2 drop-shadow-md md:h-full "
+      )}
     >
       {/* form */}
       <form
-        className="m-2 flex flex-col items-center text-slate-900 "
+        className="py-2 flex flex-col items-center text-slate-900 "
         onSubmit={handleSubmit}
         action="submit"
       >
@@ -51,7 +54,7 @@ const Input = ({ createMessage }: CreateMessageProps) => {
         <div>
           <p className="text-red-600">{error}</p>
         </div>
-        <div className="m-4 inline-block">
+        <div className="mt-4 inline-block">
           <SecondaryButton
             onClick={() => {
               console.log("button click");

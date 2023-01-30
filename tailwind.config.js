@@ -21,7 +21,7 @@ module.exports = {
     extend: {
       colors: {
         white: "#ffffff",
-        clrWhite: "#dbdbdb",
+        clrWhite: "#e6e6e6",
         clrGrey: "#e0e0e0",
         clrDarkGrey: "#b3b3b3",
         clrBlue: "#2c3843",
